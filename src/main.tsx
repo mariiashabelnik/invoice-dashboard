@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
+import Store from "./store";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -38,14 +39,16 @@ const darkTheme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Navbar />
-      <Container maxWidth="lg">
-        <Box p={2}>
-          <RouterProvider router={router} />
-        </Box>
-      </Container>
-    </ThemeProvider>
+    <Store>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Navbar />
+        <Container maxWidth="lg">
+          <Box p={2}>
+            <RouterProvider router={router} />
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </Store>
   </React.StrictMode>
 );
