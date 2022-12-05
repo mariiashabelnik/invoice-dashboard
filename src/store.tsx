@@ -1,5 +1,10 @@
 import { useState, createContext, useEffect, ReactNode } from "react";
-import { apiProjectCall, apiAllTasksCall, apiAllTimersCall } from "./api";
+import {
+  apiProjectCall,
+  apiAllTasksCall,
+  apiAllTimersCall,
+  apiAllInvoicesCall,
+} from "./api";
 
 export const StoreContext = createContext<AppContextInterface>({});
 
@@ -12,6 +17,7 @@ function Store({ children }: StoreProps) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [timers, setTimers] = useState<Timer[]>([]);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
 
   const loadAllProjects = async () => {
     const projectData = await apiProjectCall();
@@ -28,12 +34,18 @@ function Store({ children }: StoreProps) {
     setTimers(timeData);
   };
 
+  const loadAllInvoices = async () => {
+    const invoiceData = await apiAllInvoicesCall();
+    setInvoices(invoiceData);
+  };
+
   // store is loaded
   useEffect(() => {
     const fetchData = async () => {
       await loadAllProjects();
       await loadAllTasks();
       await loadAllTimers();
+      await loadAllInvoices();
       setLoading(false);
     };
 
@@ -46,10 +58,12 @@ function Store({ children }: StoreProps) {
     projectStore: { projects, loadAllProjects },
     taskStore: { tasks, loadAllTasks },
     timeStore: { timers, loadAllTimers },
+    invoiceStore: { invoices, loadAllInvoices },
   };
 
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
   );
 }
+
 export default Store;

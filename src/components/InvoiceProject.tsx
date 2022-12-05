@@ -4,6 +4,7 @@ import {
   AccordionDetails,
   Typography,
   Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -11,17 +12,23 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Input,
-  InputLabel,
   InputAdornment,
-  FormControl,
   TextField,
+  Checkbox,
 } from "@mui/material";
 
-import { ExpandMore, AccountCircle } from "@mui/icons-material";
+import { useContext } from "react";
+
+import { StoreContext } from "../store";
+
+import { ExpandMore, AccountCircle, Send } from "@mui/icons-material";
 import { useState } from "react";
 
+import { apiCreateInvoice } from "../api";
+
 function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
+  const { invoiceStore } = useContext<AppContextInterface>(StoreContext);
+
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(100);
 
@@ -32,6 +39,7 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
   const priorDate = new Date(new Date().setDate(todayDate.getDate() - 30));
 
   let sumPrice = 0;
+  let foundTimers = false;
 
   const timerList = timers?.map((item) => {
     // find task from timer
@@ -44,6 +52,8 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
     if (timerStart.getTime() <= priorDate.getTime()) {
       return false;
     }
+
+    foundTimers = true;
 
     const timerStop = new Date(item?.stop || "");
 
@@ -71,17 +81,24 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
         <TableCell component="th" scope="row">
+          <Checkbox />
+        </TableCell>
+        <TableCell component="th" scope="row">
           {taskItem?.title}
         </TableCell>
         <TableCell component="th" scope="row">
-          {diffInHours} hours
+          {diffInHours}
         </TableCell>
         <TableCell component="th" scope="row">
-          {itemPrice} kr
+          {itemPrice}
         </TableCell>
       </TableRow>
     );
   });
+
+  if (foundTimers === false) {
+    return <></>;
+  }
 
   // draw page
   return (
@@ -97,18 +114,26 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
+                  <TableCell>Use</TableCell>
                   <TableCell>TASKS</TableCell>
-                  <TableCell>TIME</TableCell>
-                  <TableCell>COST</TableCell>
+                  <TableCell>TIME (h)</TableCell>
+                  <TableCell>COST (kr)</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{timerList}</TableBody>
             </Table>
           </TableContainer>
-          <Typography>Total price {sumPrice} kr</Typography>
-          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+          <Typography align="right">Total price {sumPrice} kr</Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "space-around",
+            }}
+          >
             <TextField
-              label="Name"
+              label="Customer"
               variant="standard"
               value={name}
               onChange={(e) => {
@@ -122,10 +147,8 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
                 ),
               }}
             />
-          </Box>
-
-          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <TextField
+              sx={{ mx: 5 }}
               label="price"
               variant="standard"
               value={price}
@@ -139,6 +162,27 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
                 ),
               }}
             />
+            <Button
+              onClick={async () => {
+                const todayDate = new Date();
+                const expireDate = new Date(
+                  new Date().setDate(todayDate.getDate() + 30)
+                );
+                const invoiceObj = {
+                  status: "not-payed",
+                  expireDate: expireDate.toISOString(),
+                  customer: name,
+                  sumPrice: sumPrice,
+                };
+                //create invoice -> send invoice to API and create invoice there -> load this in [] Store/Context
+                await apiCreateInvoice(invoiceObj);
+                invoiceStore?.loadAllInvoices();
+              }}
+              variant="contained"
+              endIcon={<Send />}
+            >
+              Create invoice
+            </Button>
           </Box>
         </AccordionDetails>
       </Accordion>

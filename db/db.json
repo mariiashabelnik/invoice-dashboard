@@ -149,5 +149,42 @@
       "timer": false,
       "id": 7
     }
+  ],
+  "invoices": [
+    {
+      "status": "not-payed",
+      "expireDate": "2023-01-03T19:27:46.526Z",
+      "customer": "test",
+      "sumPrice": 250,
+      "id": 1
+    },
+    {
+      "status": "not-payed",
+      "expireDate": "2023-01-03T23:09:12.256Z",
+      "customer": "",
+      "sumPrice": 50,
+      "id": 2
+    },
+    {
+      "status": "not-payed",
+      "expireDate": "2023-01-03T23:09:12.898Z",
+      "customer": "",
+      "sumPrice": 50,
+      "id": 3
+    },
+    {
+      "status": "not-payed",
+      "expireDate": "2023-01-03T23:09:14.131Z",
+      "customer": "",
+      "sumPrice": 250,
+      "id": 4
+    },
+    {
+      "status": "not-payed",
+      "expireDate": "2023-01-03T23:09:14.583Z",
+      "customer": "",
+      "sumPrice": 250,
+      "id": 5
+    }
   ]
 }

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { Typography, Box } from "@mui/material";
-import { StoreContext } from "../store";
 
+import { StoreContext } from "../store";
+import { Typography, Box } from "@mui/material";
 import InvoiceProject from "../components/InvoiceProject";
 
 export default function Home() {

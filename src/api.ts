@@ -21,4 +21,27 @@ function apiAllTimersCall(): Promise<Timer[]> {
   }).then((res) => res.json());
 }
 
-export { apiProjectCall, apiAllTasksCall, apiAllTimersCall };
+function apiCreateInvoice(invoice: Invoice): Promise<any> {
+  return fetch(`${server}/invoices`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(invoice),
+  }).then((res) => res.json());
+}
+
+function apiAllInvoicesCall(): Promise<Invoice[]> {
+  return fetch(`${server}/invoices`, {
+    method: "GET",
+    headers: {},
+  }).then((res) => res.json());
+}
+
+export {
+  apiProjectCall,
+  apiAllTasksCall,
+  apiAllTimersCall,
+  apiCreateInvoice,
+  apiAllInvoicesCall,
+};

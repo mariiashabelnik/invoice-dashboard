@@ -31,6 +31,13 @@ interface Timer {
   stop?: string;
 }
 
+interface Invoice {
+  status: string;
+  expireDate: string;
+  customer: string;
+  sumPrice: number;
+}
+
 interface ProjectStore {
   projects: Project[];
   loadAllProjects: () => Promise<void>;
@@ -46,8 +53,14 @@ interface TimeStore {
   loadAllTimers: () => Promise<void>;
 }
 
+interface InvoiceStore {
+  invoices: Invoice[];
+  loadAllInvoices: () => Promise<void>;
+}
+
 interface AppContextInterface {
   projectStore?: ProjectStore;
   taskStore?: TaskStore;
   timeStore?: TimeStore;
+  invoiceStore?: InvoiceStore;
 }
