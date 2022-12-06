@@ -32,9 +32,9 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(100);
 
-  console.log("Inside InvoiceProject", tasks);
-  // fetch all tasks with project id = id
-
+  const [includeTimer, setIncludeTimer] = useState<{ [key: number]: Boolean }>(
+    {}
+  ); // fetch all tasks with project id = id
   const todayDate = new Date();
   const priorDate = new Date(new Date().setDate(todayDate.getDate() - 30));
 
@@ -73,7 +73,9 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
     diffInHours = Math.round(diffInHours * 100) / 100;
 
     const itemPrice = diffInHours * price;
-    sumPrice = sumPrice + itemPrice;
+    if (includeTimer[item.id]) {
+      sumPrice = sumPrice + itemPrice;
+    }
 
     return (
       <TableRow
@@ -81,7 +83,18 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
         <TableCell component="th" scope="row">
-          <Checkbox />
+          <Checkbox
+            checked={includeTimer[item.id] ? true : false}
+            onClick={() => {
+              const tmpObj = { ...includeTimer };
+              if (tmpObj[item.id]) {
+                tmpObj[item.id] = false;
+              } else {
+                tmpObj[item.id] = true;
+              }
+              setIncludeTimer(tmpObj);
+            }}
+          />
         </TableCell>
         <TableCell component="th" scope="row">
           {taskItem?.title}
