@@ -32,10 +32,11 @@ interface Timer {
 }
 
 interface Invoice {
-  status: string;
-  expireDate: string;
-  customer: string;
-  sumPrice: number;
+  status?: string;
+  expireDate?: string;
+  customer?: string;
+  sumPrice?: number;
+  id?: number;
 }
 
 interface ProjectStore {

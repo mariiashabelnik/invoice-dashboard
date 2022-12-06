@@ -38,10 +38,21 @@ function apiAllInvoicesCall(): Promise<Invoice[]> {
   }).then((res) => res.json());
 }
 
+function apiSetInvoiceStatus(invoiceId: number | undefined, body: Invoice) {
+  return fetch(`${server}/invoices/${invoiceId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(body),
+  }).then((res) => res.json());
+}
+
 export {
   apiProjectCall,
   apiAllTasksCall,
   apiAllTimersCall,
   apiCreateInvoice,
   apiAllInvoicesCall,
+  apiSetInvoiceStatus,
 };

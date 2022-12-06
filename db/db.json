@@ -152,39 +152,53 @@
   ],
   "invoices": [
     {
-      "status": "not-payed",
+      "status": "payed",
       "expireDate": "2023-01-03T19:27:46.526Z",
       "customer": "test",
       "sumPrice": 250,
       "id": 1
     },
     {
-      "status": "not-payed",
+      "status": "payed",
       "expireDate": "2023-01-03T23:09:12.256Z",
-      "customer": "",
+      "customer": "John Doe",
       "sumPrice": 50,
       "id": 2
     },
     {
       "status": "not-payed",
       "expireDate": "2023-01-03T23:09:12.898Z",
-      "customer": "",
+      "customer": "John Doe 1",
       "sumPrice": 50,
       "id": 3
     },
     {
-      "status": "not-payed",
+      "status": "payed",
       "expireDate": "2023-01-03T23:09:14.131Z",
-      "customer": "",
+      "customer": "John Doe",
       "sumPrice": 250,
       "id": 4
     },
     {
       "status": "not-payed",
       "expireDate": "2023-01-03T23:09:14.583Z",
-      "customer": "",
+      "customer": "John Doe",
       "sumPrice": 250,
       "id": 5
+    },
+    {
+      "status": "not-payed",
+      "expireDate": "2023-01-04T15:38:48.170Z",
+      "customer": "Jane Doe",
+      "sumPrice": 150,
+      "id": 6
+    },
+    {
+      "status": "payed",
+      "expireDate": "2023-01-05T19:50:08.511Z",
+      "customer": "Test Testsson",
+      "sumPrice": 600,
+      "id": 7
     }
   ]
 }

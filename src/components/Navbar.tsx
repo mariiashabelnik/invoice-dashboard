@@ -26,9 +26,11 @@ interface Props {
 
 const drawerWidth = 240;
 const navItems = [
-  { label: "Home", link: "/" },
-  { label: "About", link: "/about" },
-  { label: "Contact", link: "/contact" },
+  { label: "Overview", link: "/" },
+  { label: "Create invoice", link: "/createinvoice" },
+  { label: "Invoices", link: "/invoices" },
+
+  { label: "Timers", link: "/timers" },
 ];
 
 export default function Navbar(props: Props) {

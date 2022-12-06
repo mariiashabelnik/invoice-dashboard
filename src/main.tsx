@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import About from "./pages/About";
-import Home from "./pages/Home";
+import Invoices from "./pages/Invoices";
+import CreateInvoice from "./pages/CreateInvoice";
 import Navbar from "./components/Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -11,6 +11,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Timers from "./pages/Timers";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +20,16 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/about",
-    element: <About />,
+    path: "/createinvoice",
+    element: <CreateInvoice />,
   },
   {
-    path: "/",
-    element: <Home />,
+    path: "/invoices",
+    element: <Invoices />,
+  },
+  {
+    path: "/timers",
+    element: <Timers />,
   },
   {
     path: "/contact",
