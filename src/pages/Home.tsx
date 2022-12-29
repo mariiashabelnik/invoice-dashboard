@@ -1,20 +1,7 @@
 import { useContext } from "react";
 
-import { apiSetInvoiceStatus } from "../api";
-
-import { DateTime } from "luxon";
-
 import { StoreContext } from "../store";
-import {
-  Typography,
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 export default function Home() {
   const { invoiceStore, projectStore, timeStore, taskStore } =
@@ -47,6 +34,7 @@ export default function Home() {
       <Typography variant="h5" align="center">
         Overview
       </Typography>
+
       <Typography variant="h6" align="center">
         Number of projects: {projectStore?.projects.length}
       </Typography>

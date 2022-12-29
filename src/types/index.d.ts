@@ -13,6 +13,14 @@ interface InvoiceProjectProps {
   timers?: Timer[];
 }
 
+interface TitleProps {
+  title: string;
+}
+
+interface TextboxProps {
+  label: string;
+}
+
 interface Task {
   title: string;
   userId: number;
