@@ -22,9 +22,8 @@ export default function Invoices() {
   const { invoiceStore } = useContext<AppContextInterface>(StoreContext);
 
   const invoicesUI = invoiceStore?.invoices.map((item) => {
-    console.log(item);
     const expire = DateTime.fromISO(item.expireDate);
-    console.log(expire);
+
     return (
       <TableRow key={item.id}>
         <TableCell>

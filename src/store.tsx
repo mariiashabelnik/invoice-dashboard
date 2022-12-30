@@ -61,6 +61,10 @@ function Store({ children }: StoreProps) {
     invoiceStore: { invoices, loadAllInvoices },
   };
 
+  if (shouldLoad === true) {
+    return <div aria-label="loading">Loading</div>;
+  }
+
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
   );

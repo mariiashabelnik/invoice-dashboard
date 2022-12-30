@@ -19,6 +19,15 @@ interface TitleProps {
 
 interface TextboxProps {
   label: string;
+  color?: string;
+  title?: string;
+}
+
+interface ButtonProps {
+  title: string;
+  color?: string;
+  disabled?: boolean;
+  opacity?: number;
 }
 
 interface Task {

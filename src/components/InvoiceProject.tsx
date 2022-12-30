@@ -116,7 +116,7 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
   // draw page
   return (
     <Box sx={{ m: 1 }}>
-      <Accordion>
+      <Accordion defaultExpanded={true}>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>{title}</Typography>
         </AccordionSummary>
