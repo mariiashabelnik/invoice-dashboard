@@ -1,18 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import Invoices from "./pages/Invoices";
 import CreateInvoice from "./pages/CreateInvoice";
+import Timers from "./pages/Timers";
+import Home from "./pages/Home";
+
 import Navbar from "./components/Navbar";
+
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import Store from "./store";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import Store from "./store";
+
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Timers from "./pages/Timers";
-import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {

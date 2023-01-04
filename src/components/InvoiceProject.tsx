@@ -26,7 +26,7 @@ import { useState } from "react";
 
 import { apiCreateInvoice } from "../api";
 
-function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
+function InvoiceProject({ title, tasks, timers, id }: InvoiceProjectProps) {
   const { invoiceStore } = useContext<AppContextInterface>(StoreContext);
 
   const [name, setName] = useState<string>("");
@@ -116,7 +116,7 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
   // draw page
   return (
     <Box sx={{ m: 1 }}>
-      <Accordion defaultExpanded={true}>
+      <Accordion defaultExpanded={true} data-test-id={`invoice-${id}`}>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>{title}</Typography>
         </AccordionSummary>
@@ -148,6 +148,7 @@ function InvoiceProject({ title, tasks, timers }: InvoiceProjectProps) {
             <TextField
               label="Customer"
               variant="standard"
+              data-test-id="username"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);

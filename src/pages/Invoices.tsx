@@ -25,9 +25,10 @@ export default function Invoices() {
     const expire = DateTime.fromISO(item.expireDate);
 
     return (
-      <TableRow key={item.id}>
+      <TableRow key={item.id} data-test-id={`invoiceList-${item.id}`}>
         <TableCell>
           <Select
+          data-test-id={`invoiceSelect-${item.id}`}
             value={item.status}
             onChange={async (e) => {
               // update invoice
